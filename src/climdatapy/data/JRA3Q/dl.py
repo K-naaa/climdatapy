@@ -291,7 +291,6 @@ def jra3Q_download(
     start_time: datetime,
     end_time: datetime,
     base_dir: Path,
-    log_file_fpath: Path,
     exist_skip: bool = False,
     **kwargs,
 ) -> None:
@@ -369,7 +368,6 @@ def jra3Q_download(
                             download(
                                 url,
                                 save_fpath,
-                                log_file_fpath=log_file_fpath,
                                 download_method="util_url_noauth",
                                 exist_skip=exist_skip,
                             )

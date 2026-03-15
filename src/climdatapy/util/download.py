@@ -57,7 +57,6 @@ def download_noauth(
 def download(
     url: str,
     save_fpath: Path,
-    log_file_fpath: Path,
     download_method: str,
     exist_skip: bool = False,
     **kwargs,

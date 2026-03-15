@@ -1,10 +1,13 @@
 #! /usr/bin/env python3
 
 
+from datetime import datetime, timedelta
+from pathlib import Path
 from typing import Any
 
 from ...util import Dataset
 from .param import code_dict
+from . import dl
 
 
 class JRA3Q(Dataset):
@@ -83,3 +86,32 @@ class JRA3Q(Dataset):
                                 )
 
         return request_key_list
+
+    def dl_file(
+        self,
+        start_time: datetime,
+        end_time: datetime,
+        request_kw: dict[str, Any],
+        data_dir: Path,
+        exist_ok: bool = False,
+    ) -> None:
+        dl.jra3Q_download(
+            request_kw["stats_type"],
+            request_kw["data_kind"],
+            request_kw["var"],
+            request_kw["near_realtime"],
+            start_time,
+            end_time,
+            data_dir,
+            exist_ok,
+        )
+
+    def get_newest_time(self, request_kw: dict[str, list[Any]]) -> datetime:
+
+        if request_kw["near_realtime"]:
+            last_time = datetime.now() - timedelta(days=4)
+            last_time = datetime(last_time.year, last_time.month, last_time.day, 18)
+        else:
+            last_time = datetime.now() - timedelta(days=4)
+
+        return last_time
