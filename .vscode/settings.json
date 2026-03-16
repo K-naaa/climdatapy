@@ -1,0 +1,25 @@
+{
+    "python.analysis.extraPaths": ["./src"],
+
+    "editor.formatOnSave": true,
+
+    "editor.defaultFormatter": "ms-python.black-formatter",
+
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
+
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+
+    "python.analysis.typeCheckingMode": "basic",
+
+    "files.trimTrailingWhitespace": true,
+
+    "editor.rulers": [88],
+
+    "autoDocstring.docstringFormat": "numpy"
+}
