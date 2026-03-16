@@ -13,14 +13,14 @@ import warnings
 import logging
 
 
-MAX_TRIAL = 10
+MAX_TRIAL = 3
 
 
 def download_noauth(
     url: str,
     save_fpath: Path,
     chunk_size: int = 8192,
-    sleep_time: float = 5.0,
+    sleep_time: float = 1.0,
     **kwargs,
 ) -> None:
     """

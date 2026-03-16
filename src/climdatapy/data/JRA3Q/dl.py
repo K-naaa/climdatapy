@@ -36,7 +36,7 @@ def __get_file_name(
         start_date = datetime(year, month, 1, 0)
     tail_date = get_tail_time(year, month, **kwargs)
 
-    mn_or_std = "-sd" if std else "mn"
+    mn_or_std = "sd" if std else "mn"
 
     code = code_dict[data_kind][var]
 
@@ -88,7 +88,7 @@ def __get_file_name_nrtime(
         elif stats_type == "diurnal":
             __time = f"{year:04}{month:02}_{hour:02}"
 
-    mn_or_std = "-sd" if std else ""
+    mn_or_std = "_sd" if std else ""
 
     return f"{data_kind}{__var}{mn_or_std}.{__time}"
 

@@ -31,6 +31,13 @@ class JRA3Q(Dataset):
             ]
         if "all" in download_kw["near_realtime"]:
             download_kw["near_realtime"] = [False, True]
+        else:
+            download_kw["near_realtime"] = [
+                True if x == "true" else False if x == "false" else x
+                for x in download_kw["near_realtime"]
+            ]
+
+        download_kw["std"] = [True] if download_kw["std"][0] == "true" else [False]
 
         for stats_type in download_kw["stats_type"]:
             # 瞬間値 or 統計値
@@ -77,7 +84,7 @@ class JRA3Q(Dataset):
                                     "var": __var,
                                 }
                             )
-                        if download_kw["std"] and download_kw["stats_type"] in [
+                        if download_kw["std"][0] and stats_type in [
                             "monthly",
                             "diurnal",
                         ]:
@@ -87,7 +94,7 @@ class JRA3Q(Dataset):
                                     "data_kind": data_kind,
                                     "near_realtime": near_realtime,
                                     "std": True,
-                                    "var": None,
+                                    "var": __var,
                                 }
                             )
                     else:
@@ -104,10 +111,11 @@ class JRA3Q(Dataset):
                                     "std": False,
                                 }
                             )
-                            if download_kw["std"] and download_kw["stats_type"] in [
+                            if download_kw["std"][0] and stats_type in [
                                 "monthly",
                                 "diurnal",
                             ]:
+
                                 request_key_list.append(
                                     {
                                         "stats_type": stats_type,
@@ -119,6 +127,16 @@ class JRA3Q(Dataset):
                                 )
 
         return request_key_list
+
+    def get_all_download_key(self) -> dict[str, list[Any]]:
+        return {
+            "stats_type": ["all"],
+            "data_kind": ["all"],
+            "near_realtime": ["true"],
+            "stats_type": ["all"],
+            "std": ["true"],
+            "var": ["all"],
+        }
 
     def dl_file(
         self,
@@ -147,6 +165,12 @@ class JRA3Q(Dataset):
             last_time = datetime.now() - timedelta(days=4)
             last_time = datetime(last_time.year, last_time.month, last_time.day, 18)
         else:
-            last_time = datetime.now() - timedelta(days=4)
+            now_time = datetime.now()
+            dmonth = 1 if now_time.day >= 4 else 2
+            month = now_time.month - dmonth
+            year = now_time.year if month > 0 else now_time.year - 1
+            month = 12 - month if month < 1 else month
+
+            last_time = dl.get_tail_time(year, month, dt=timedelta(hours=6))
 
         return last_time
