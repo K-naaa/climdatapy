@@ -133,7 +133,7 @@ class JRA3Q(Dataset):
     ) -> tuple[datetime, datetime]:
 
         if request_kw["near_realtime"]:
-            min_start_time = datetime(datetime.now().year - 4, 1, 1, 0)
+            min_start_time = datetime(datetime.now().year - 2, 1, 1, 0)
         else:
             min_start_time = datetime(1947, 9, 1, 0)
 
