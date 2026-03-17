@@ -20,6 +20,7 @@
     - [3.2.3. ```update```メソッド](#323-updateメソッド)
     - [3.2.4. ```update_all```メソッド](#324-update_allメソッド)
   - [3.3. 対応データセット](#33-対応データセット)
+  - [3.4. サンプルスクリプト](#34-サンプルスクリプト)
 - [4. Author](#4-author)
 
 
@@ -146,5 +147,11 @@ manager.update(
 |---|---|---|
 |JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)|
 
+
+## 3.4. サンプルスクリプト
+|||
+|---|---|
+|[```sample/download_JRA3Q.py```](./sample/download_JRA3Q.py)|JRA3Qのダウンロード|
+|[```sample/update_JRA3Q.py```](./sample/update_JRA3Q.py)|JRA3Qの更新|
 # 4. Author
 - [So Tomita](https://github.com/sotomita)
