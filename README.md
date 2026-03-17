@@ -1,32 +1,50 @@
-# climdatapy
+# 1. climdatapy
 <p>
 <img src="https://img.shields.io/github/license/sotomita/bsod">
 <img src="https://img.shields.io/badge/-Python-gray.svg?logo=Python">
 </p>
-気象・海洋のデータセットをダウンロードするCLI/Pythonパッケージ。
 
-## Installation
-Python 3.14以上が必要。
+[![Publish to PyPI](https://github.com/sotomita/climdatapy/actions/workflows/publish.yml/badge.svg)](https://github.com/sotomita/climdatapy/actions/workflows/publish.yml)
 
-```pip```コマンドを使い、PyPIからインストールする。
+気象・海洋のデータセットをダウンロードするCLI/Pythonパッケージ。- [climdatapy](#climdatapy)
+- [1. climdatapy](#1-climdatapy)
+- [2. Installation](#2-installation)
+- [3. Usage](#3-usage)
+  - [3.1. CLI](#31-cli)
+    - [3.1.1. ダウンロード可能データセットを表示](#311-ダウンロード可能データセットを表示)
+    - [3.1.2. データセットをダウンロード](#312-データセットをダウンロード)
+    - [3.1.3. 最新データをダウンロード](#313-最新データをダウンロード)
+  - [3.2. Pythonモジュール](#32-pythonモジュール)
+    - [3.2.1. ```dowload```メソッド](#321-dowloadメソッド)
+    - [3.2.2. ```download_all```メソッド](#322-download_allメソッド)
+    - [3.2.3. ```update```メソッド](#323-updateメソッド)
+    - [3.2.4. ```update_all```メソッド](#324-update_allメソッド)
+  - [3.3. 対応データセット](#33-対応データセット)
+- [4. Author](#4-author)
+
+
+# 2. Installation
+Python 3.11以上が必要。
+
+```pip```コマンドを使い、[PyPI](https://pypi.org/project/climdatapy/)からインストールする。
 ```bash
 $ pip install climdatapy
 ```
 
-## Usage
-### CLI
+# 3. Usage
+## 3.1. CLI
 ```climdata```コマンドでデータセットを管理する。
-#### ダウンロード可能データセットを表示
+### 3.1.1. ダウンロード可能データセットを表示
 ```$ climdata list```
-#### データセットをダウンロード
+### 3.1.2. データセットをダウンロード
 (例) 2024年1月1日から1月2日までのJRA3Qデータをダウンロードする。
 ```
-$ climdata download JRA3Q --start_time 2024-01-01 --end_time 2024-01-02 --out ./JRA3Q --logfile jra3q.log
+$ climdata download JRA3Q --start_time 2024-01-01 --end_time 2024-01-02 --out ./JRA3Q --logfile jra3q.log --skip_existing
 ```
 引数の説明は```-h```オプションで確認できる。
 ```
 $ climdata download -h
-usage: climdata download [-h] --start_time START_TIME --end_time END_TIME [--out OUT] [--logfile LOGFILE] dataset
+usage: climdata download [-h] --start_time START_TIME --end_time END_TIME [--out OUT] [--logfile LOGFILE] [--skip_existing] dataset
 
 Download files for a specified dataset and time range.
 
@@ -40,17 +58,18 @@ options:
   --end_time END_TIME   end date (YYYY-MM-DD)
   --out OUT             output directory
   --logfile LOGFILE     logfile path
+  --skip_existing       set for ignore existing files
 ```
 
-#### 最新データをダウンロード
+### 3.1.3. 最新データをダウンロード
 (例) 公開されている最新のJRA3Qデータをダウンロードする。
 ```
-$ climdata update JRA3Q --out ./JRA3Q --logfile jra3q.log
+$ climdata update JRA3Q --out ./JRA3Q --logfile jra3q.log --skip_existing
 ```
 引数の説明は```-h```オプションで確認できる。
 ```
 $ climdata update -h
-usage: climdata update [-h] [--out OUT] [--logfile LOGFILE] dataset
+usage: climdata update [-h] [--out OUT] [--logfile LOGFILE] [--skip_existing] dataset
 
 positional arguments:
   dataset            dataset name
@@ -59,9 +78,10 @@ options:
   -h, --help         show this help message and exit
   --out OUT          output directory
   --logfile LOGFILE  logfile path
+  --skip_existing       set for ignore existing files
 ```
 
-### Pythonモジュール
+## 3.2. Pythonモジュール
 各データセットは、抽象基底クラス```climdata.util.Dataset```を継承したデータセット管理クラス(以下、管理クラス)を持つ。
 
 ```climdatapy.get_manager```関数で管理クラスを取得する。
@@ -70,7 +90,7 @@ import climdatapy
 
 manager = climdatapy.get_manager("JRA3Q")
 ```
-#### ```dowload```メソッド
+### 3.2.1. ```dowload```メソッド
 任意の時間の範囲、変数などを選択し、ダウンロードする。
 
 (例)
@@ -98,12 +118,14 @@ manager.download(
     exist_ok=True,
 )
 ```
-```download_kw```はデータセット固有の設定すべき情報を辞書型で確認する。
+```download_kw```はデータセット固有の情報を辞書型で格納する。
 
-#### ```download_all```メソッド
+詳細は各データセットの説明([```doc```](./doc/))を参照。
+
+### 3.2.2. ```download_all```メソッド
 指定できる最大限の```download_kw```を```download```メソッドに与えるwrapper。
 
-#### ```update```メソッド
+### 3.2.3. ```update```メソッド
 取得できる最新の時刻のデータをダウンロードする。
 
 (例)
@@ -116,11 +138,13 @@ manager.update(
 )
 ```
 
-#### ```update_all```メソッド
+### 3.2.4. ```update_all```メソッド
 指定できる最大限の```download_kw```を```update```メソッドに与えるwrapper。
 
-### 対応データセット
-- JRA3Q
+## 3.3. 対応データセット
+||source||
+|---|---|---|
+|JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)|
 
-## Author
+# 4. Author
 - [So Tomita](https://github.com/sotomita)

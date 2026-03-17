@@ -36,6 +36,31 @@ class Dataset(ABC):
         pass
 
     @abstractmethod
+    def get_request_time_range(
+        self, start_time: datetime, end_time: datetime, request_kw: dict[str, Any]
+    ) -> tuple[datetime, datetime]:
+        """ダウンロード可能な時刻範囲を取得。
+        データセットの公開期間のみ抽出する。
+
+        Parameters
+        ----------
+        start_time : datetime
+            ダウンロード開始時刻
+        end_time : datetime
+            ダウンロード終了時刻
+        request_kw : dict[str, Any]
+            ファイルの設定
+
+        Returns
+        -------
+        tuple[datetime, datetime]
+            ダウンロード可能な最小・最大時刻。
+            start_time, end_timeがデータセットの公開期間内の場合、(start_time, end_time)
+        """
+
+        pass
+
+    @abstractmethod
     def get_all_download_key(self) -> dict[str, list[str]]:
         """指定可能な最大限のdownload_keyを取得
 
@@ -106,7 +131,12 @@ class Dataset(ABC):
         request_kw_list = self.get_request_key(download_kw)
 
         for request_kw in tqdm(request_kw_list, desc=f"{self.__class__.__name__}"):
-            self.dl_file(start_time, end_time, request_kw, data_dir, exist_ok)
+            request_start_time, request_end_time = self.get_request_time_range(
+                start_time, end_time, request_kw
+            )
+            self.dl_file(
+                request_start_time, request_end_time, request_kw, data_dir, exist_ok
+            )
 
     def download_all(
         self,

@@ -27,12 +27,17 @@ def cmd_download(args):
         end_time=args.end_time,
         data_dir=args.out,
         log_file_path=args.logfile,
+        exist_ok=args.skip_existing,
     )
 
 
 def cmd_update(args):
     manager = get_manager(args.dataset)
-    manager.update_all(data_dir=args.out, log_file_path=args.logfile)
+    manager.update_all(
+        data_dir=args.out,
+        log_file_path=args.logfile,
+        exist_ok=args.skip_existing,
+    )
 
 
 def cmd_list(args):
@@ -84,6 +89,9 @@ def main():
         default=None,
         help="logfile path",
     )
+    p_download.add_argument(
+        "--skip_existing", action="store_true", help="set for ignore existing files"
+    )
 
     p_download.set_defaults(func=cmd_download)
 
@@ -107,6 +115,10 @@ def main():
         type=Path,
         default=None,
         help="logfile path",
+    )
+
+    p_update.add_argument(
+        "--skip_existing", action="store_true", help="set for ignore existing files"
     )
 
     p_update.set_defaults(func=cmd_update)
