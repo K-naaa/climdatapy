@@ -146,6 +146,8 @@ manager.update(
 ||source||
 |---|---|---|
 |JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)|
+|NCEP Reanalysis1|[京大生存研DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP1.md)|
+引用や謝辞等の規定はsourceを参照してください。
 
 
 ## 3.4. サンプルスクリプト

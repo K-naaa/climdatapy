@@ -1,11 +1,12 @@
 #! /usr/bin/env python3
 
 from . import data
+from .util import Dataset
 
-DATASET_REGISTRY = {"JRA3Q": data.JRA3Q}
+DATASET_REGISTRY = {"JRA3Q": data.JRA3Q, "NCEP12": data.NCEP12}
 
 
-def get_manager(name: str):
+def get_manager(name: str) -> Dataset:
     """データセット管理クラスを取得
 
     Parameters
@@ -15,7 +16,7 @@ def get_manager(name: str):
 
     Returns
     -------
-    _type_
+    Dataset
         データセット管理クラス
 
     Raises
