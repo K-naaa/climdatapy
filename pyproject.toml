@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "climdatapy"
-version = "v0.2.0"
+version = "v0.3.0"
 description = "Downloader for meteorological and ocean datasets"
 authors = [{name="So Tomita"}]
 readme = "README.md"

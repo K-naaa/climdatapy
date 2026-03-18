@@ -2,6 +2,6 @@ from setuptools import setup, find_packages
 
 setup(
     name="climdatapy",
-    version="v0.2.0",
+    version="v0.3.0",
     packages=find_packages(),
 )

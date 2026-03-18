@@ -18,6 +18,7 @@ def read_as_str(url, sleep_time: float = 1.0) -> str | None:
     for i in range(MAX_TRIAL):
         try:
             response: requests.Response = requests.get(url, timeout=60)
+            time.sleep(sleep_time)
             response.raise_for_status()
 
             return response.text
@@ -28,9 +29,7 @@ def read_as_str(url, sleep_time: float = 1.0) -> str | None:
             warnings.warn(f'ConnectionError while downloading "{url}".', stacklevel=4)
         except ReadTimeout:
             warnings.warn(f'Read Timeout while downloading "{url}".', stacklevel=4)
-        except ChunkedEncodingError as e:
+        except ChunkedEncodingError:
             warnings.warn(
                 f'ChunkedEncodingError while downloading "{url}".', stacklevel=4
             )
-
-        time.sleep(sleep_time)
