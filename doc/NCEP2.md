@@ -1,4 +1,4 @@
-# NCEP1
+# NCEP2
 
 ## Source
 [京大生存圏データベース](https://www.rish.kyoto-u.ac.jp/dbhs/)にて公開されているNetCDFファイルをダウンロードする。

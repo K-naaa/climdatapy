@@ -3,7 +3,14 @@
 from . import data
 from .util import Dataset
 
-DATASET_REGISTRY = {"JRA3Q": data.JRA3Q, "NCEP12": data.NCEP12}
+DATASET_REGISTRY = {
+    "JRA3Q": data.JRA3Q,
+    "NCEP1": data.NCEP1,
+    "NCEP2": data.NCEP2,
+    "OISST": data.OISST,
+    "COBESST": data.COBESST,
+    "HIMSST": data.HIMSST,
+}
 
 
 def get_manager(name: str) -> Dataset:

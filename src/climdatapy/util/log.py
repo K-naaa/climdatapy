@@ -42,7 +42,7 @@ def log_to_file(level=logging.INFO) -> Callable:
 
             try:
                 logger.info(
-                    "download completed successfully",
+                    "start download",
                 )
 
                 result = func(*args, **kwargs)
