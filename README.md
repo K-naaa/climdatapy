@@ -148,6 +148,7 @@ manager.update(
 |JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)|
 |NCEP Reanalysis1|[京大生存研DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP1.md)|
 |NCEP Reanalysis2|[京大生存研DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP2.md)|
+|OISST|[NOAA NCEI](https://www.ncei.noaa.gov/products/optimum-interpolation-sst)|[詳細](./doc/OISST.md)|
 
 引用や謝辞等の規定はsourceを参照してください。
 

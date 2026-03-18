@@ -7,6 +7,7 @@ DATASET_REGISTRY = {
     "JRA3Q": data.JRA3Q,
     "NCEP1": data.NCEP1,
     "NCEP2": data.NCEP2,
+    "OISST": data.OISST,
 }
 
 

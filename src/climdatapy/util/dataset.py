@@ -104,9 +104,9 @@ class Dataset(ABC):
         self,
         start_time: datetime,
         end_time: datetime,
-        download_kw: dict[str, list[str]],
-        data_dir: Path,
-        log_file_path: Path,
+        download_kw: dict[str, list[str]] = {"": [""]},
+        data_dir: Path = Path("./"),
+        log_file_path: Path = Path("./download.log"),
         exist_ok: bool = False,
         **kwargs,
     ) -> None:
@@ -130,7 +130,12 @@ class Dataset(ABC):
 
         request_kw_list = self.get_request_key(download_kw)
 
-        for request_kw in tqdm(request_kw_list, desc=f"{self.__class__.__name__}"):
+        itter = (
+            tqdm(request_kw_list, desc=f"{self.__class__.__name__}")
+            if len(request_kw_list) > 1
+            else request_kw_list
+        )
+        for request_kw in itter:
             request_start_time, request_end_time = self.get_request_time_range(
                 start_time, end_time, request_kw
             )
@@ -188,9 +193,9 @@ class Dataset(ABC):
     @log_to_file()
     def update(
         self,
-        download_kw: dict[str, list[str]],
-        data_dir: Path,
-        log_file_path: Path,
+        download_kw: dict[str, list[str]] = {"": [""]},
+        data_dir: Path = Path("./"),
+        log_file_path: Path = Path("./update.log"),
         exist_ok: bool = False,
     ) -> None:
         """最新のファイルをダウンロード。
