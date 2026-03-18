@@ -21,7 +21,7 @@ def get_url(time: datetime, **kwargs) -> str:
 
 def get_save_fpath(time: datetime, base_dir: Path) -> Path:
 
-    return Path(f"{base_dir}/OISST/v2.1/{time:%Y}/{time:%Y%m}/{get_filename(time)}")
+    return base_dir / Path(f"OISST/v2.1/{time:%Y}/{time:%Y%m}/{get_filename(time)}")
 
 
 def oisst_download(

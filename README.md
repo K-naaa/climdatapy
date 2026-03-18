@@ -149,8 +149,9 @@ manager.update(
 |NCEP Reanalysis1|[京大生存研DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP1.md)|
 |NCEP Reanalysis2|[京大生存研DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP2.md)|
 |OISST|[NOAA NCEI](https://www.ncei.noaa.gov/products/optimum-interpolation-sst)|[詳細](./doc/OISST.md)|
+|COBESST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/cobe2_sst_glb_M.html)|[詳細](./doc/COBESST.md)|
 
-引用や謝辞等の規定はsourceを参照してください。
+各データ使用の際の引用や謝辞等の規定はsourceを参照してください。
 
 
 ## 3.4. サンプルスクリプト

@@ -1,2 +1,5 @@
 requests
 tqdm
+numpy
+pandas
+xarray

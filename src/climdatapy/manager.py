@@ -8,6 +8,7 @@ DATASET_REGISTRY = {
     "NCEP1": data.NCEP1,
     "NCEP2": data.NCEP2,
     "OISST": data.OISST,
+    "COBESST": data.COBESST,
 }
 
 
