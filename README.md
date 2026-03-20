@@ -7,7 +7,25 @@
 [![Publish to PyPI](https://github.com/sotomita/climdatapy/actions/workflows/publish.yml/badge.svg)](https://github.com/sotomita/climdatapy/actions/workflows/publish.yml)
 
 気象・海洋のデータセットをダウンロードするCLI/Pythonパッケージ。
+
+## 1.1. 対応データセット
+||source||```.climdatarc```|
+|---|---|---|---|
+|JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)||
+|NCEP Reanalysis1|[京大生存圏DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP1.md)||
+|NCEP Reanalysis2|[京大生存圏DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP2.md)||
+|OISST|[NOAA NCEI](https://www.ncei.noaa.gov/products/optimum-interpolation-sst)|[詳細](./doc/OISST.md)||
+|COBESST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/cobe2_sst_glb_M.html)|[詳細](./doc/COBESST.md)||
+|HIMSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/him_sst_pac_D.html)|[詳細](./doc/HIMSST.md)||
+|MGDSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/mgd_sst_glb_D.html)|[詳細](./doc/MGDSST.md)||
+|OSTIA|[Copernicus Marine Data Store](https://data.marine.copernicus.eu/product/SST_GLO_SST_L4_NRT_OBSERVATIONS_010_001/description)|[詳細](./doc/OSTIA.md)|```CopernicusMarineUsername```,```CopernicusMarinePassward```|
+
+各データ使用の際の引用や謝辞等の規定はsourceを参照してください。
+
+## 1.2. 目次
 - [1. climdatapy](#1-climdatapy)
+  - [1.1. 対応データセット](#11-対応データセット)
+  - [1.2. 目次](#12-目次)
 - [2. Installation](#2-installation)
 - [3. Usage](#3-usage)
   - [3.1. CLI](#31-cli)
@@ -19,7 +37,7 @@
     - [3.2.2. ```download_all```メソッド](#322-download_allメソッド)
     - [3.2.3. ```update```メソッド](#323-updateメソッド)
     - [3.2.4. ```update_all```メソッド](#324-update_allメソッド)
-  - [3.3. 対応データセット](#33-対応データセット)
+  - [3.3. ```.climdatarc```](#33-climdatarc)
   - [3.4. サンプルスクリプト](#34-サンプルスクリプト)
 - [4. Author](#4-author)
 
@@ -142,19 +160,18 @@ manager.update(
 ### 3.2.4. ```update_all```メソッド
 指定できる最大限の```download_kw```を```update```メソッドに与えるwrapper。
 
-## 3.3. 対応データセット
-||source||
-|---|---|---|
-|JRA3Q|[NCAR GDEX](https://gdex.ucar.edu/)|[詳細](./doc/JRA3Q.md)|
-|NCEP Reanalysis1|[京大生存圏DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP1.md)|
-|NCEP Reanalysis2|[京大生存圏DB](https://database.rish.kyoto-u.ac.jp/arch/ncep/)|[詳細](./doc/NCEP2.md)|
-|OISST|[NOAA NCEI](https://www.ncei.noaa.gov/products/optimum-interpolation-sst)|[詳細](./doc/OISST.md)|
-|COBESST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/cobe2_sst_glb_M.html)|[詳細](./doc/COBESST.md)|
-|HIMSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/him_sst_pac_D.html)|[詳細](./doc/HIMSST.md)|
-|MGDSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/mgd_sst_glb_D.html)|[詳細](./doc/MGDSST.md)|
 
 
-各データ使用の際の引用や謝辞等の規定はsourceを参照してください。
+## 3.3. ```.climdatarc```
+一部データのダウンロードに必要なアカウント情報、API keyなどを記述するファイル。
+
+```$HOME```に配置する。
+
+以下の変数を必要に応じて記述する。(例: CopernicusMarineUsername=username)
+|変数名||
+|---|---|
+|```CopernicusMarineUsername```|Copernicus Marinのユーザ名|
+|```CopernicusMarinePassward```|Copernicus Marinのパスワード|
 
 
 ## 3.4. サンプルスクリプト
