@@ -13,7 +13,7 @@ import climdatapy
 manager = climdatapy.get_manager("MODIS")
 
 manager.download(
-    start_time=datetime(2022, 12, 1),  # 例：185日目
+    start_time=datetime(2022, 12, 1),  
     end_time=datetime(2026, 3, 29),
     data_dir=Path("/DATA/DATA/PUBLIC_DATA/MODIS/MCD06COSP_D3_MODIS"),
     exist_ok=True,
