@@ -19,6 +19,8 @@
 |HIMSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/him_sst_pac_D.html)|[詳細](./doc/HIMSST.md)||
 |MGDSST|[JMA NEAR-GOOS](https://ds.data.jma.go.jp/goos/data/rrtdb/jma-pro/mgd_sst_glb_D.html)|[詳細](./doc/MGDSST.md)||
 |OSTIA|[Copernicus Marine Data Store](https://data.marine.copernicus.eu/product/SST_GLO_SST_L4_NRT_OBSERVATIONS_010_001/description)|[詳細](./doc/OSTIA.md)|```CopernicusMarineUsername```,```CopernicusMarinePassward```|
+|MODIS|[EATHDATA](https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/62/MCD06COSP_D3_MODIS/)|[詳細](./doc/MODIS.md)|```ModisUsername```,```ModisPassward```|
+
 
 各データ使用の際の引用や謝辞等の規定はsourceを参照してください。
 
@@ -179,5 +181,7 @@ manager.update(
 |---|---|
 |[```sample/download_JRA3Q.py```](./sample/download_JRA3Q.py)|JRA3Qのダウンロード|
 |[```sample/update_JRA3Q.py```](./sample/update_JRA3Q.py)|JRA3Qの更新|
+|[```sample/download_MODIS.py```](./sample/download_MODIS.py)|MODISのダウンロード|
+|[```sample/update_MODIS.py```](./sample/update_MODIS.py)|MODISの更新|
 # 4. Author
 - [So Tomita](https://github.com/sotomita)
